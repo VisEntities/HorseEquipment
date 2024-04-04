@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Oxide.Plugins
 {
-    [Info("Horse Equipment", "VisEntities", "1.0.0")]
+    [Info("Horse Equipment", "VisEntities", "1.0.1")]
     [Description("Automatically equip horses with various types of equipment upon spawning.")]
     public class HorseEquipment : RustPlugin
     {
@@ -260,7 +260,7 @@ namespace Oxide.Plugins
             horse.equipmentInventory.Clear();
 
             List<ItemInfo> uniqueItemsByType = FilterUniqueItemsByType(_config.ItemsToEquip);
-            int numberOfSlotsToEquip = Mathf.Clamp(Random.Range(_config.MinimumSlotsToEquip, _config.MaximumSlotsToEquip + 1), 0, 4);
+            int numberOfSlotsToEquip = Mathf.Clamp(Random.Range(_config.MinimumSlotsToEquip, Mathf.Min(uniqueItemsByType.Count, _config.MaximumSlotsToEquip) + 1), 0, 4);
 
             for (int i = 0; i < numberOfSlotsToEquip; i++)
             {
