@@ -16,7 +16,7 @@ using Random = UnityEngine.Random;
 namespace Oxide.Plugins
 {
     [Info("Horse Equipment", "VisEntities", "1.0.0")]
-    [Description("Automatically equip horses with various types of equipment upon spawning.")]
+    [Description("Allows horses to be equipped with random gear when they spawn.")]
     public class HorseEquipment : RustPlugin
     {
         #region Fields
