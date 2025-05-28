@@ -15,7 +15,7 @@ using Random = UnityEngine.Random;
 
 namespace Oxide.Plugins
 {
-    [Info("Horse Equipment", "VisEntities", "1.0.1")]
+    [Info("Horse Equipment", "VisEntities", "1.0.2")]
     [Description("Allows horses to be equipped with random gear when they spawn.")]
     public class HorseEquipment : RustPlugin
     {
@@ -207,7 +207,7 @@ namespace Oxide.Plugins
             _plugin = null;
         }
 
-        private void OnEntitySpawned(RidableHorse2 horse)
+        private void OnEntitySpawned(RidableHorse horse)
         {
             if (horse != null)
             {
@@ -224,7 +224,7 @@ namespace Oxide.Plugins
 
         private IEnumerator UpdateAllHorsesCoroutine()
         {
-            foreach (RidableHorse2 horse in BaseNetworkable.serverEntities.OfType<RidableHorse2>())
+            foreach (RidableHorse horse in BaseNetworkable.serverEntities.OfType<RidableHorse>())
             {
                 if (horse != null)
                     UpdateHorse(horse);
@@ -233,7 +233,7 @@ namespace Oxide.Plugins
             }
         }
 
-        private void UpdateHorse(RidableHorse2 horse)
+        private void UpdateHorse(RidableHorse horse)
         {
             if (ChanceSucceeded(_config.ChanceForDoubleSaddleSeat))
             {
@@ -247,7 +247,7 @@ namespace Oxide.Plugins
             EquipItems(horse);
         }
 
-        private void EquipItems(RidableHorse2 horse)
+        private void EquipItems(RidableHorse horse)
         {
             if (horse.equipmentInventory == null)
                 return;
@@ -288,7 +288,7 @@ namespace Oxide.Plugins
             return uniqueItems;
         }
 
-        private void SetSeatCount(RidableHorse2 horse, int numberOfSeats)
+        private void SetSeatCount(RidableHorse horse, int numberOfSeats)
         {
             horse.SetFlag(BaseEntity.Flags.Reserved9, false, false, false);
             horse.SetFlag(BaseEntity.Flags.Reserved10, false, false, false);
